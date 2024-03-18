@@ -22,7 +22,16 @@ const Todo = () => {
                 item: "make development"
             }
         ]
-    )
+    );
+    
+    const handleSelect = (id) => {
+        setInput(input.map(item => item.id === id ? {...item, checked: !item.checked} : item));
+    }
+
+    const handleDelete = (id) => {
+        setInput(input.filter((item)=> item.id !== id))
+    }
+
     return ( 
         <div>
             <ul>
@@ -31,9 +40,9 @@ const Todo = () => {
                         <input 
                         type="checkbox"
                         checked = {item.checked}
-                        />
-                        <label>{item.item}</label>
-                        <FaTrashAlt />
+                        onChange={()=>handleSelect(item.id)}/>
+                        <label onDoubleClick = {() => handleSelect(item.id)}>{item.item}</label>
+                        <FaTrashAlt onClick={() => handleDelete(item.id)} />
                      </li>
                 ) )}
             </ul>
