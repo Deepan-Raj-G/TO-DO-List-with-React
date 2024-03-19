@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaTrashAlt } from "react-icons/fa";
+import '../index.css'
 
 const Todo = () => {
     const  [input, setInput] = React.useState(
@@ -33,7 +34,7 @@ const Todo = () => {
     }
 
     return ( 
-        <div>
+        <main>
             <ul>
                 { input.map(item => (
                      <li key={item.id}>
@@ -41,12 +42,12 @@ const Todo = () => {
                         type="checkbox"
                         checked = {item.checked}
                         onChange={()=>handleSelect(item.id)}/>
-                        <label onDoubleClick = {() => handleSelect(item.id)}>{item.item}</label>
+                        <label style={(item.checked)? {textDecoration: 'line-through'} : null} onDoubleClick = {() => handleSelect(item.id)}>{item.item}</label>
                         <FaTrashAlt onClick={() => handleDelete(item.id)} />
                      </li>
                 ) )}
             </ul>
-        </div>
+        </main>
     );
 }
  

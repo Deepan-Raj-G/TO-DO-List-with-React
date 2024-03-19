@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
+import '../index.css';
 
 const Header = () => {
     return (
-        <div className='header'>
+        <header>
             <h1>TO-DO List</h1>
-        </div>
+        </header>
     );
 }
  
