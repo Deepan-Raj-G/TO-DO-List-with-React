@@ -1,10 +1,10 @@
 import React from 'react';
 import '../index.css';
 
-const Footer = () => {
+const Footer = ({length}) => {
     return ( 
         <footer>
-            <h1>Deepan Raj G</h1>
+            <h1>{length} List {(length === 1) ? "Item" : "Items" }</h1>
         </footer>
     );
 }
