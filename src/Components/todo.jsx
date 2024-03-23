@@ -3,7 +3,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import '../index.css'
 
 const Todo = () => {
-    const  [input, setInput] = React.useState(
+    const  [items, setItem] = React.useState(
         [
             {
                 id: 1,
@@ -26,17 +26,18 @@ const Todo = () => {
     );
     
     const handleSelect = (id) => {
-        setInput(input.map(item => item.id === id ? {...item, checked: !item.checked} : item));
+        setItem(items.map(item => item.id === id ? {...item, checked: !item.checked} : item));
     }
 
     const handleDelete = (id) => {
-        setInput(input.filter((item)=> item.id !== id))
+        setItem(items.filter((item)=> item.id !== id))
     }
 
     return ( 
         <main>
+            {(items.length) ? (
             <ul>
-                { input.map(item => (
+                { items.map(item => (
                      <li key={item.id}>
                         <input 
                         type="checkbox"
@@ -47,6 +48,9 @@ const Todo = () => {
                      </li>
                 ) )}
             </ul>
+            ) : (
+                <h2>List is empty</h2>
+            )}       
         </main>
     );
 }
