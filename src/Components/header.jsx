@@ -1,10 +1,10 @@
 import React from 'react';
 import '../index.css';
 
-const Header = () => {
+const Header = (props) => {
     return (
         <header>
-            <h1>TO-DO List</h1>
+            <h1>{props.tittle}</h1>
         </header>
     );
 }
