@@ -3,6 +3,7 @@ import Header from './Components/header';
 import Footer from './Components/footer';
 import Content from './Components/content';
 import AddItem from './Components/addItem';
+import SearchItem from './Components/searchItem';
 // import './index.css';
 
 const App = () => {
@@ -11,6 +12,8 @@ const App = () => {
   );
 
   const[newItem, setNewItem] = useState('')
+
+  const[search, SetSearch] = useState('')
 
   const addItem = (item) =>{
     const id = items.length ? items[items.length-1].id+1 : 1 ;
@@ -46,8 +49,12 @@ const App = () => {
       setNewItem = {setNewItem}
       handleSubmit = {handleSubmit}
       />
+      <SearchItem
+      search = {search}
+      SetSearch = {SetSearch}
+      />
       <Content 
-      items = {items}
+      items = {items.filter(item => item.item.includes(search))}
       handleSelect = {handleSelect}
       handleDelete = {handleDelete}
       />
