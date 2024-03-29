@@ -6,26 +6,8 @@ import AddItem from './Components/addItem';
 // import './index.css';
 
 const App = () => {
-    const  [items, setItem] = React.useState(
-      [
-          {
-              id: 1,
-              checked: true,
-              item: "Buy groceries"
-          },
-
-          {
-              id: 2,
-              checked: false,
-              item: "Clean the house"
-          },
-
-          {
-              id: 3,
-              checked: true,
-              item: "make development"
-          }
-      ]
+    const  [items, setItem] = useState(
+      JSON.parse(localStorage.getItem('todo_list'))
   );
 
   const[newItem, setNewItem] = useState('')
@@ -34,15 +16,20 @@ const App = () => {
     const id = items.length ? items[items.length-1].id+1 : 1 ;
     const NewItem = {id, checked:false, item};
     setItem([...items, NewItem])
+    localStorage.setItem("todo_list", JSON.stringify([...items, NewItem]))
   }
 
 
   const handleSelect = (id) => {
-      setItem(items.map(item => item.id === id ? {...item, checked: !item.checked} : item));
+      const ListItems = items.map(item => item.id === id ? {...item, checked: !item.checked} : item);
+      setItem(ListItems);
+      localStorage.setItem("todo_list",JSON.stringify(ListItems))
   }
 
   const handleDelete = (id) => {
-      setItem(items.filter((item)=> item.id !== id))
+    const ListItems = items.filter((item)=> item.id !== id)
+      setItem(ListItems)
+      localStorage.setItem("todo_list", JSON.stringify(ListItems))
   }
 
   const handleSubmit = (e) =>{
